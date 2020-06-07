@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+const sub = ['语文', '数学', '英语', '物理', '化学', '生物', '政治', '历史', '地理', '技术'];
+option = {
+    tooltip: {
+            formatter: param => ['线性相关度', sub[param.data[0]] + '-' + sub[param.data[1]], param.data[2].toFixed(2)].join('<br/>')
+        },
+    animation: false,
+   grid: {
+            left: 0,
+            right: '2%',
+            top: '2%',
+            bottom: 0,
+            containLabel: true
+        },
+   xAxis: {
+            type: 'category',
+            data: sub,
+            splitArea: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            axisLine: {
+                show: false
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#eeeeee',
+                    type: 'dashed'
+                }
+            },
+            axisLabel: {
+                formatter: param => param[0] + '\n' + param[1]
+            }
+        },
+   yAxis: {
+            type: 'category',
+            data: sub,
+            splitArea: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            axisLine: {
+                show: false
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#eeeeee',
+                    type: 'dashed'
+                }
+            }
+        },
+    visualMap: {
+            show: false,
+            min: 0.4,
+            max: 0.5,
+            inRange: {
+                color: ['white','green']
+            },
+            outOfRange: {
+                color: '#fff'
+            }
+        },
+   series: [{
+            name: '',
+            type: 'heatmap',
+            data: [[0, 1, 0.2126023828642828], [0, 2, 0.46456595689542735], [0, 3, 0.16429493752308943], [0, 4, 0.17365694412135446], [0, 5, 0.26008079961325015], [0, 6, 0.4469361728082814], [0, 7, 0.43109958940192256], [0, 8, 0.21999623711165595], [0, 9, 0.14053848740187203], [1, 2, 0.229398805557114], [1, 3, 0.4915518251186113], [1, 4, 0.386040044627757], [1, 5, 0.3209822717732279], [1, 6, 0.24260258834125048], [1, 7, 0.2660459185560523], [1, 8, 0.18937926770003755], [1, 9, 0.18767746955357845], [2, 3, 0.20832759391371802], [2, 4, 0.18438499613704262], [2, 5, 0.21930902967364826], [2, 6, 0.37054597064165506], [2, 7, 0.3101742237630789], [2, 8, 0.17030192305727754], [2, 9, 0.10791131851157508], [3, 4, 0.4517908047842244], [3, 5, 0.388748000829256], [3, 6, 0.21745951030540334], [3, 7, 0.2542762668593983], [3, 8, 0.2564702598210483], [3, 9, 0.13909828954476988], [4, 5, 0.49070708792220386], [4, 6, 0.22980670873489484], [4, 7, 0.21145452844406787], [4, 8, 0.3259403311623562], [4, 9, 0.1235113130148544], [5, 6, 0.31916001456487264], [5, 7, 0.2780310700033145], [5, 8, 0.4321450063009704], [5, 9, 0.22119882835539173], [6, 7, 0.45773872740702926], [6, 8, 0.2940580111470037], [6, 9, 0.1285895001110562], [7, 8, 0.33154414087694206], [7, 9, 0.1011659460504456], [8, 9, 0.15017336828324768]],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 5,
+                    shadowColor: 'rgba(0, 0, 0, 0.2)'
+                }
+            }
+        }]
+};;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>
